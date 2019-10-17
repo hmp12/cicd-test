@@ -18,17 +18,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/login")
-    public UserLoginDTO login(@RequestParam String username, @RequestParam String password) {
-        UserLoginDTO userDTO = new UserLoginDTO();
-        UserEntity user = userService.getUserByUsername(username);
-        if (user.getPassword().equals(password)) {
-            BeanUtils.copyProperties(user, userDTO);
-            userDTO.setToken("asdsdfdsfdsfsdfsdfdsfd");
-        }
-        return userDTO;
-    }
-
     @GetMapping("/all")
     public List<UserEntity> getAllUsers() {
         List<UserEntity> userList = (List<UserEntity>) userService.getAllUser();
